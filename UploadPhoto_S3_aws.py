@@ -1,6 +1,7 @@
 import time
 import cv2
 import boto3
+import os
 
 
 
@@ -16,6 +17,7 @@ while (cap.isOpened()):
 
         cv2.imwrite('./test_movie/'+ timestamp +'.jpg',frame)
         s3.upload_file('./test_movie/' + timestamp + '.jpg', 'webviedo', timestamp + '.jpg')
+        os.remove('./test_movie/'+ timestamp +'.jpg')
 
     counter = counter+1
 
